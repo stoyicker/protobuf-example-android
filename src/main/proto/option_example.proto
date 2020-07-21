@@ -1,8 +1,7 @@
 syntax = "proto3";
 
-package example.options;
+package protobuf.sample;
 
-option java_package = "com.example.options";
 option java_multiple_files = true;
 
 message OptionMessageTest {

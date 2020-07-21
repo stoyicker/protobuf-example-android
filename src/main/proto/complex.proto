@@ -1,13 +1,15 @@
 syntax = "proto3";
 
-package example.complex;
+package protobuf.sample;
+
+option java_multiple_files = true;
 
 message ComplexMessage {
-    DummyMessage one_dummy = 2;
-    repeated DummyMessage multiple_dummy = 3;
+  DummyMessage one_dummy = 2;
+  repeated DummyMessage multiple_dummy = 3;
 }
 
 message DummyMessage {
-    int32 id = 1;
-    string name = 2;
+  int32 id = 1;
+  string name = 2;
 }

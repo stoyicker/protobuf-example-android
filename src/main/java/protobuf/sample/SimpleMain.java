@@ -1,7 +1,9 @@
-package com.github.simplesteph.protobuf;
+package protobuf.sample;
 
-import example.simple.Simple.SimpleMessage;
+import android.content.Context;
+import android.util.Log;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -10,9 +12,9 @@ import java.util.Arrays;
 
 public class SimpleMain {
 
-    public static void main(String[] args) {
+    public static void main(String[] args, Context context) {
 
-        System.out.println("Hello world!");
+        Log.i("SimpleMain", "Hello world!");
 
         SimpleMessage.Builder builder = SimpleMessage.newBuilder();
 
@@ -27,13 +29,13 @@ public class SimpleMain {
                 .addSampleList(3)
                 .addAllSampleList(Arrays.asList(4, 5, 6));
 
-        System.out.println(builder.toString());
+        Log.i("SimpleMain", builder.toString());
 
         SimpleMessage message = builder.build();
 
         // write the protocol buffers binary to a file
         try {
-            FileOutputStream outputStream = new FileOutputStream("simple_message.bin");
+            FileOutputStream outputStream = new FileOutputStream(new File(context.getCacheDir(), "simple_message.bin"));
             message.writeTo(outputStream);
             outputStream.close();
         } catch (FileNotFoundException e) {
@@ -46,10 +48,10 @@ public class SimpleMain {
         // byte[] bytes = message.toByteArray();
 
         try {
-            System.out.println("Reading from file... ");
-            FileInputStream fileInputStream = new FileInputStream("simple_message.bin");
+            Log.i("SimpleMain", "Reading from file... ");
+            FileInputStream fileInputStream = new FileInputStream(new File(context.getCacheDir(), "simple_message.bin"));
             SimpleMessage messageFromFile = SimpleMessage.parseFrom(fileInputStream);
-            System.out.println(messageFromFile);
+            Log.i("SimpleMain", messageFromFile.toString());
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {

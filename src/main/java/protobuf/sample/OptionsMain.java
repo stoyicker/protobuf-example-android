@@ -1,6 +1,4 @@
-package com.github.simplesteph.protobuf;
-
-import com.example.options.OptionMessageOther;
+package protobuf.sample;
 
 public class OptionsMain {
 

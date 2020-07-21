@@ -1,7 +1,6 @@
-package com.github.simplesteph.protobuf;
+package protobuf.sample;
 
-import example.complex.Complex;
-import example.complex.Complex.*;
+import android.util.Log;
 
 import java.util.Arrays;
 
@@ -10,7 +9,7 @@ public class ComplexMain {
 
     public static void main(String[] args) {
 
-        System.out.println("Complex example");
+        Log.i("ComplexMain", "Complex example");
 
         DummyMessage oneDummy = newDummyMessage(55, "one dummy message");
 
@@ -31,7 +30,7 @@ public class ComplexMain {
 
         ComplexMessage message = builder.build();
 
-        System.out.println(message.toString());
+        Log.i("ComplexMain", message.toString());
 
 
         // GET EXAMPLE
@@ -39,10 +38,10 @@ public class ComplexMain {
 
     }
 
-    public static DummyMessage newDummyMessage(Integer id, String name){
+    public static DummyMessage newDummyMessage(Integer id, String name) {
         // same learning as "SimpleMain"
         DummyMessage.Builder dummyMessageBuilder = DummyMessage.newBuilder();
-        DummyMessage message =  dummyMessageBuilder.setName(name)
+        DummyMessage message = dummyMessageBuilder.setName(name)
                 .setId(id)
                 .build();
 

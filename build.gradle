@@ -1,15 +1,49 @@
-apply plugin: 'java'
+apply plugin: "com.android.application"
+apply plugin: "com.google.protobuf"
 
 buildscript {
     repositories {
-        mavenCentral()
+        jcenter()
+        google()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:4.0.1"
+        classpath "com.google.protobuf:protobuf-gradle-plugin:0.8.12"
+    }
+}
+
+android {
+    compileSdkVersion 29
+    dexOptions {
+        preDexLibraries false
+    }
+    variantFilter {
+        if (it.buildType.name.toLowerCase(Locale.ENGLISH) == "release") {
+            ignore = true
+        }
+    }
+}
+
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:3.12.2"
+    }
+    generateProtoTasks {
+        all().each { task ->
+            task.builtins {
+                java {
+                    option "lite"
+                }
+            }
+        }
     }
 }
 
 repositories {
-    mavenCentral()
+    jcenter()
+    google()
 }
 
 dependencies {
-    implementation 'com.google.protobuf:protobuf-javalite:3.12.2'
+    implementation "com.google.protobuf:protobuf-javalite:3.12.2"
 }
